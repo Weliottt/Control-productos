@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -56,8 +57,15 @@ public class ProductoController {
         Negocio negocio = negocioService.getNegocioById(idNegocio);
 
         List<Producto> productos = negocio.getProductos();
+        BigDecimal totalGeneral = BigDecimal.ZERO;
+
+        for (Producto producto : productos){
+            totalGeneral = totalGeneral.add(producto.getTotal());
+        }
+
         model.addAttribute("productos", productos);
         model.addAttribute("idNegocio", idNegocio);
+        model.addAttribute("totalGeneral",totalGeneral);
 
         return "producto/listaProductos";
     }

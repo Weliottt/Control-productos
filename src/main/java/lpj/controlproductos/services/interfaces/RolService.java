@@ -8,6 +8,8 @@ public interface RolService {
 
     public List<Rol> getRoles();
 
+    public Rol findRolByNombre(String nombreRol);
+
     public Rol getRolById(Long idRol);
 
     public Rol saveRol(Rol rol);

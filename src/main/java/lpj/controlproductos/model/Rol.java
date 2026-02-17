@@ -17,6 +17,16 @@ public class Rol implements Serializable {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "rol")
-    private Set<DetallesUsuario> usuarios;
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    private Set<Usuario> usuarios;
+
+    public String getNombre(){
+        if("ROLE_USER".equals(this.nombre)){
+            return "User";
+        }else if("ROLE_ADMIN".equals(this.nombre)){
+            return "Admin";
+        }else
+            return this.nombre;
+    }
+
 }

@@ -21,6 +21,4 @@ public class Negocio {
     @OneToMany(mappedBy = "negocio")
     private List<Producto> productos;
 
-    @OneToMany(mappedBy = "negocio")
-    private List<DetallesUsuario> usuarios;
 }

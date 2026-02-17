@@ -17,6 +17,7 @@ public interface UsuarioService {
 
     public boolean existePorUsername(String username);
 
+    public Usuario findByUsername(String username);
 }
 
 

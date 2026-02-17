@@ -1,8 +1,12 @@
 package lpj.controlproductos.controllers;
 
 import lpj.controlproductos.model.Negocio;
+import lpj.controlproductos.model.Usuario;
 import lpj.controlproductos.services.interfaces.NegocioService;
+import lpj.controlproductos.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +19,9 @@ public class NegocioController {
     @Autowired
     NegocioService negocioService;
 
+
     @PostMapping("/admin/negocio/guardar")
-    public String guardar(Negocio negocio){
+    public String guardar( Negocio negocio){
         negocioService.saveNegocio(negocio);
         return "redirect:/";
     }
