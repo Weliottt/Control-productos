@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
       data-bs-theme="dark">
 
-<head th:replace="~{/layout/plantilla :: head('Productos')}"></head>
+<head th:replace="~{/layout/plantilla :: head('Usuarios')}"></head>
 
 <body class="bg-info-subtle d-flex flex-column min-vh-100">
 
@@ -26,13 +26,13 @@
                     <td th:text="${usuario.fechaAlta}"></td>
                     <td>
                         <span th:each="rol, stat : ${usuario.roles}">
-                            <span th:text="${rol.getNombre()}"></span>
+                            <span th:text="${rol.getRol()}"></span>
                             <span th:if="${!stat.last}">, </span>
                         </span>
                     </td>
 
                     <td class="" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="btn btn-outline-light">
+                        <a class="btn btn-outline-light" th:href="@{/admin/usuario/editar/{id} (id = ${usuario.idUsuario})}">
                             <i class="fa-solid fa-pen-to-square"></i><span>Editar</span></a></td>
 
                     <td sec:authorize="hasRole('ROLE_ADMIN')" >

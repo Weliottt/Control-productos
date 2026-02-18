@@ -48,6 +48,11 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
     @Override
     @Transactional
     public Usuario saveUsuario(Usuario usuario) {
+
+        if(usuario.getIdUsuario() != null){
+            return usuarioRepository.save(usuario);
+        }
+
         //Codificamos la contraseña
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         //Registramos la fecha de creacion del usuario
@@ -61,8 +66,6 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
         }
 
         usuario.getRoles().add(rolUsuario);
-
-        log.info("Se ha creado un nuevo usuario: " + usuario.getUsername());
 
         //Lo guardamos en la base de datos
         return usuarioRepository.save(usuario);

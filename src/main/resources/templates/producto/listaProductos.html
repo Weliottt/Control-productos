@@ -24,7 +24,7 @@
 
 <section class="container flex-grow-1 mt-4" th:fragment="listaProductos">
   <div class="row align-items-center">
-    <div class="col-12 col-lg-9 mt-4">
+    <div class="col-12 mt-4">
       <div class="table-responsive">
 
         <table class="table table-striped table-dark align-middle text-center">
@@ -60,7 +60,7 @@
 
     </div>
 
-    <div class="col-12 col-lg-3 mt-3 mt-lg-0">
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-12 mt-3">
       <div class="card bg-success">
         <div class="card-body text-center align-items-center">
           <h2>Total de mercadería</h2>

@@ -20,7 +20,7 @@ public class Rol implements Serializable {
     @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private Set<Usuario> usuarios;
 
-    public String getNombre(){
+    public String getRol(){
         if("ROLE_USER".equals(this.nombre)){
             return "User";
         }else if("ROLE_ADMIN".equals(this.nombre)){
