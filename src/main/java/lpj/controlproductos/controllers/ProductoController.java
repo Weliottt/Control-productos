@@ -58,14 +58,19 @@ public class ProductoController {
 
         List<Producto> productos = negocio.getProductos();
         BigDecimal totalGeneral = BigDecimal.ZERO;
+        boolean vacio = productos.isEmpty();
 
-        for (Producto producto : productos){
-            totalGeneral = totalGeneral.add(producto.getTotal());
+        if (vacio){
+            model.addAttribute("vacio",vacio);
+        }else {
+            for (Producto producto : productos){
+                totalGeneral = totalGeneral.add(producto.getTotal());
+            }
+            model.addAttribute("vacio",vacio);
+            model.addAttribute("productos", productos);
+            model.addAttribute("idNegocio", idNegocio);
+            model.addAttribute("totalGeneral",totalGeneral);
         }
-
-        model.addAttribute("productos", productos);
-        model.addAttribute("idNegocio", idNegocio);
-        model.addAttribute("totalGeneral",totalGeneral);
 
         return "producto/listaProductos";
     }

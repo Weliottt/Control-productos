@@ -22,7 +22,11 @@
 </nav>
 
 
-<section class="container flex-grow-1 mt-4" th:fragment="listaProductos">
+<section th:if="${vacio}" class="container flex-grow-1 mt-4">
+  <div th:replace="~{layout/cardVacia :: sinProductos}"></div>
+</section>
+
+<section th:if="${!vacio}" class="container flex-grow-1 mt-4" th:fragment="listaProductos">
   <div class="row align-items-center">
     <div class="col-12 mt-4">
       <div class="table-responsive">
@@ -68,7 +72,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 </section>

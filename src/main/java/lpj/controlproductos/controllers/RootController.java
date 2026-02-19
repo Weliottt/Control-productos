@@ -32,8 +32,9 @@ public class RootController {
         List<Negocio> negocios = negocioService.listarNegocios();
         boolean vacio = negocios.isEmpty();
 
-        model.addAttribute("negocios",negocios);
-        model.addAttribute("vacio",vacio);
+            model.addAttribute("negocios",negocios);
+            model.addAttribute("vacio", vacio);
+
 
         return "layout/index";
     }
