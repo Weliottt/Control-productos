@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
       data-bs-theme="dark">
 
-<head th:replace="~{/layout/plantilla :: head('Inicio')}">
+<head th:replace="~{/layout/plantilla :: head(#{header.inicio})}">
 </head>
 <body class="bg-info-subtle d-flex flex-column min-vh-100">
 <header th:replace="~{/layout/plantilla :: navbar}"></header>
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="mt-3 text-center">
                 <a th:href="@{/admin/negocio/agregar}" class="btn btn-primary"><i
-                        class="fa-solid fa-plus"></i><span> Agregar Negocio</span>
+                        class="fa-solid fa-plus"></i><span th:text="#{agregarNegocio}"> Agregar Negocio</span>
                 </a>
             </div>
         </div>

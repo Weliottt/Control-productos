@@ -24,7 +24,7 @@
               <p th:text="${negocio.descripcionNegocio}">Esta es una descripcion de mi negocio</p>
             </div>
             <div class="card-footer text-center">
-              <a th:href="@{/user/negocio/{id}(id = ${negocio.idNegocio})}" class="btn btn-primary">Ver más</a>
+              <a th:href="@{/user/negocio/{id}(id = ${negocio.idNegocio})}" class="btn btn-primary" th:text="#{boton.verMas}">Ver más</a>
             </div>
           </div>
         </div>

@@ -7,11 +7,11 @@
             <div class="d-flex">
                 <div class="card text-center w-100 mt-3 h-100">
                     <div class="card-header">
-                        <h3 >No se ha agregado ningún negocio todavía</h3>
+                        <h3 th:text="#{negocioVacio.Titulo}">No se ha agregado ningún negocio todavía</h3>
                     </div>
                     <div class="card-body">
-                        <p class="fs-5">Necesita agregar un negocio para poder visualizarlo</p>
-                        <p class="text-warning">(Solo los administradores pueden crear negocios)</p>
+                        <p class="fs-5" th:text="#{negocioVacio.cuerpo}">Necesita agregar un negocio para poder visualizarlo</p>
+                        <p class="text-warning" th:text="#{negocioVacio.aviso}">(Solo los administradores pueden crear negocios)</p>
                     </div>
                 </div>
             </div>
@@ -23,11 +23,11 @@
         <div class="d-flex">
             <div class="card text-center w-100 mt-3 h-100">
                 <div class="card-header">
-                    <h3 >No se ha agregado ningún producto todavía</h3>
+                    <h3 th:text="#{productoVacio.titulo}">No se ha agregado ningún producto todavía</h3>
                 </div>
                 <div class="card-body">
-                    <p class="fs-5">Necesita agregar un producto para poder visualizarlo</p>
-                    <p class="text-warning">(Solo los administradores pueden agregar productos)</p>
+                    <p class="fs-5" th:text="#{productoVacio.cuerpo}">Necesita agregar un producto para poder visualizarlo</p>
+                    <p class="text-warning" th:text="#{productoVacio.aviso}">(Solo los administradores pueden agregar productos)</p>
                 </div>
             </div>
         </div>

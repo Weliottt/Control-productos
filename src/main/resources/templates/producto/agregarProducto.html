@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
-<head th:replace="~{layout/plantilla :: head('Agregar Producto')}"></head>
+<head th:replace="~{layout/plantilla :: head(#{agregarProducto})}"></head>
 <body class="bg-info-subtle d-flex flex-column min-vh-100">
 
 <header th:replace="~{layout/plantilla :: navbar}"></header>
@@ -10,32 +10,32 @@
         <div class="col-md-10">
             <div class="card mt-3">
                 <div class="card-header text-center">
-                    <h1>Agregar Producto</h1>
+                    <h1 th:text="#{agregarProducto}">Agregar Producto</h1>
                 </div>
                 <div class="card-body">
                     <form th:action="@{/admin/producto/guardar}" th:object="${producto}" method="post">
                         <input type="hidden" name="idNegocio" th:value="${idNegocio}">
                         <div class="mt-3">
-                            <label for="nombreProducto" class="form-label">Nombre Producto:</label>
+                            <label for="nombreProducto" class="form-label" th:text="#{label.nombreProducto}">Nombre Producto:</label>
                             <input required class="form-control" type="text" th:field="*{nombreProducto}" id="nombreProducto">
                         </div>
                         <div class="d-flex gap-2 justify-content-between">
 
                             <div class="mt-3 w-50">
-                                <label for="precio" class="form-label">Precio:</label>
+                                <label for="precio" class="form-label" th:text="#{label.precio}">Precio:</label>
                                 <input class="form-control" type="number" th:field="*{precioProducto}" id="precio" min="0">
                             </div>
                             <div class="mt-3 w-50">
-                                <label for="cantidad" class="form-label">Cantidad:</label>
+                                <label for="cantidad" class="form-label" th:text="#{label.cantidad}">Cantidad:</label>
                                 <input required class="form-control" type="number" th:field="*{cantidad}" id="cantidad" min="0">
                             </div>
                         </div>
                         <div class="mt-3">
                             <div class="d-flex justify-content-between gap-2">
                                 <div class="mt-3 w-50">
-                                    <label for="marca">Marca:</label>
+                                    <label for="marca" th:text="#{label.marca}">Marca:</label>
                                     <select required name="idMarca" id="marca" class="form-select">
-                                        <option value="" disabled selected>Seleccione una marca</option>
+                                        <option value="" disabled selected th:text="#{select.marca}">Seleccione una marca</option>
                                         <option th:each="marca : ${marcas}"
                                                 th:value="${marca.idMarca}"
                                                 th:text="${marca.nombreMarca}"
@@ -45,9 +45,9 @@
                                     </div>
                                     <div class="mt-3 w-50">
 
-                                        <label for="categoria">Categoría:</label>
+                                        <label for="categoria" th:text="#{label.categoria}">Categoría:</label>
                                         <select required class="form-select" name="idCategoria" id="categoria">
-                                            <option value="" disabled selected>Seleccione una categoría</option>
+                                            <option value="" disabled selected th:text="#{select.categoria}">Seleccione una categoría</option>
                                             <option th:each="categoria : ${categorias}"
                                                     th:value="${categoria.idCategoria}"
                                                     th:text="${categoria.nombreCategoria}"
@@ -59,13 +59,13 @@
                             </div>
 
                             <div class="mt-3">
-                                <label for="descripcion">Descripción:</label>
+                                <label for="descripcion" th:text="#{label.descripcion}">Descripción:</label>
                                 <textarea th:field="*{descripcion}" id="descripcion" cols="30" rows="5" class="form-control"></textarea>
                             </div>
 
                         <div class="mt-3 text-end">
-                            <a class="btn btn-secondary mx-2" th:href="@{/user/negocio/{id}(id = ${idNegocio})}">Volver</a>
-                            <input type="submit" class="btn btn-success" value="Guardar">
+                            <a class="btn btn-secondary mx-2" th:href="@{/user/negocio/{id}(id = ${idNegocio})}" th:text="#{boton.volver}">Volver</a>
+                            <input type="submit" class="btn btn-success" th:value="#{boton.guardar}">
                         </div>
                     </form>
                 </div>

@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+
 
 <a th:fragment="botonAgregarMarca" class="btn btn-outline-warning mt-2" data-bs-toggle="modal"
-   data-bs-target="#modalAgregarMarca">
+   data-bs-target="#modalAgregarMarca" th:text="#{boton.agregar}">
     Agregar
 </a>
 
@@ -15,19 +15,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar marca</h5>
+                    <h5 class="modal-title" th:text="#{agregarMarca}">Agregar marca</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <form th:action="@{/admin/marca/guardar}" method="post">
                     <input type="hidden" th:value="${idNegocio}" name="idNegocio">
                     <div class="modal-body">
-                        <label for="nombreMarca">Nombre de la marca:</label>
+                        <label for="nombreMarca" th:text="#{label.nombreMarca}">Nombre de la marca:</label>
                         <input type="text" class="form-control" id="nombreMarca" name="nombreMarca" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn btn-success" value="Guardar">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{boton.cerrar}">Cerrar</button>
+                        <input type="submit" class="btn btn-success" th:value="#{boton.guardar}">
                     </div>
                 </form>
             </div>
@@ -35,5 +35,4 @@
     </div>
 </div>
 
-</body>
 </html>

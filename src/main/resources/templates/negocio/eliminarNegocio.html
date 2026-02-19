@@ -13,20 +13,20 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <h1 class="modal-title">Confirmar</h1>
+            <h1 class="modal-title" th:text="#{eliminar.confirmar}">Confirmar</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
           <div class="modal-body">
-            <h4>¿Seguro que desea eliminar este negocio?</h4>
+            <h4 th:text="#{eliminar.negocio}">¿Seguro que desea eliminar este negocio?</h4>
             <h5><strong th:text="${negocio.nombreNegocio}"></strong></h5>
-            <p class="text-danger mt-2">Esta acción no se puede deshacer</p>
+            <p class="text-danger mt-2" th:text="#{eliminar.aviso}">Esta acción no se puede deshacer</p>
           </div>
 
           <div class="modal-footer">
             <form method="post" th:action="@{/admin/negocio/eliminar/{id}(id = ${negocio.idNegocio})}">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Volver</button>
-              <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" th:text="#{boton.volver}">Volver</button>
+              <button type="submit" class="btn btn-danger" th:text="#{boton.eliminar}"><i class="fa fa-trash"></i> Eliminar</button>
             </form>
           </div>
         </div>
