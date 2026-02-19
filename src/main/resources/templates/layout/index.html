@@ -20,8 +20,12 @@
     </div>
 </nav>
 
-<div class="container flex-grow-1 mt-4">
+<div th:if="${!vacio}" class="container flex-grow-1 mt-4">
     <section  th:replace="~{/negocio/listarNegocios :: listaNegocios}"></section>
+</div>
+
+<div th:if="${vacio}" class="container flex-grow-1 mt-4">
+    <section th:replace="~{layout/cardVacia :: sinNegocio}"></section>
 </div>
 
 <div th:replace="~{negocio/eliminarNegocio :: modalEliminarNegocio}"></div>

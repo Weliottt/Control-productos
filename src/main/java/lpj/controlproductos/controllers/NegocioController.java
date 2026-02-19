@@ -1,5 +1,6 @@
 package lpj.controlproductos.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import lpj.controlproductos.model.Negocio;
 import lpj.controlproductos.model.Usuario;
 import lpj.controlproductos.services.interfaces.NegocioService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@Slf4j
 public class NegocioController {
 
     @Autowired
@@ -34,6 +36,7 @@ public class NegocioController {
 
     @PostMapping("/admin/negocio/eliminar/{idNegocio}")
     public String eliminar(@PathVariable Long idNegocio){
+        log.info("Se ha eliminado el negocio: "+negocioService.getNegocioById(idNegocio).getNombreNegocio()+" con id "+idNegocio);
         negocioService.deleteNegocio(negocioService.getNegocioById(idNegocio));
         return "redirect:/";
     }

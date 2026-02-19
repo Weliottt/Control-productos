@@ -26,7 +26,7 @@
             </ul>
 
             <!-- 👇 grupo alineado a la derecha -->
-            <div class="d-flex align-items-center ms-auto gap-2">
+            <div class="d-flex align-items-center ms-auto gap-2 justify-content-end">
 
                 <!-- Dropdown idioma -->
                 <div class="dropdown" data-bs-theme="dark">
@@ -39,10 +39,10 @@
 
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="?lang=es">Español</a>
+                            <a class="dropdown-item" href="?lang=es_US">Español</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="?lang=en">English</a>
+                            <a class="dropdown-item" href="?lang=en_US">English</a>
                         </li>
                     </ul>
                 </div>
@@ -52,8 +52,6 @@
                 </a>
 
                 <div sec:authorize="isAuthenticated()">
-<!--                    <button th:replace="~{login/logout :: botonCerrarSesion}"></button>-->
-<!--                    <div th:replace="~{login/logout :: cerrarSesion}"></div>-->
                     <div class="dropdown">
                         <button class="btn btn-outline-light dropdown-toggle"
                                 type="button"
@@ -74,6 +72,7 @@
         </div>
     </div>
 </nav>
+
 
 
 <footer th:fragment="footer" data-bs-theme="dark">

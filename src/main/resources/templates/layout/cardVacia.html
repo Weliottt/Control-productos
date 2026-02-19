@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla.html :: head(title)}"></head>
+<body>
+
+<main th:fragment="sinNegocio">
+        <div class="row">
+            <div class="d-flex">
+                <div class="card text-center w-100 mt-3 h-100">
+                    <div class="card-header">
+                        <h3 >No se ha agregado ningún negocio todavía</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5">Necesita agregar un negocio para poder visualizarlo</p>
+                        <p class="text-warning">(Solo los administradores pueden crear negocios)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+
+</body>
+</html>

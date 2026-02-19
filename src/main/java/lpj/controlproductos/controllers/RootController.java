@@ -30,8 +30,10 @@ public class RootController {
     public String inicio(Model model) {
 
         List<Negocio> negocios = negocioService.listarNegocios();
+        boolean vacio = negocios.isEmpty();
 
         model.addAttribute("negocios",negocios);
+        model.addAttribute("vacio",vacio);
 
         return "layout/index";
     }

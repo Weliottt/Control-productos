@@ -18,7 +18,7 @@ public class Negocio {
 
     private String descripcionNegocio;
 
-    @OneToMany(mappedBy = "negocio")
+    @OneToMany(mappedBy = "negocio",cascade = CascadeType.ALL)
     private List<Producto> productos;
 
 }
