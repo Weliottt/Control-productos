@@ -49,6 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
     @Transactional
     public Usuario saveUsuario(Usuario usuario) {
 
+        //Si el usuario ya tiene un id se actualiza
         if(usuario.getIdUsuario() != null){
             return usuarioRepository.save(usuario);
         }
@@ -58,14 +59,16 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
         //Registramos la fecha de creacion del usuario
         usuario.setFechaAlta(LocalDate.now());
 
-        //Le asignamos el rol de User
-        Rol rolUsuario = rolService.findRolByNombre("ROLE_USER");
+        //Verifiacmos que el usuario no tenga ningun rol ya asignado (ej: el primero al abrir la aplicacion)
+        if (usuario.getRoles().isEmpty()){
+            //Le asignamos el rol de User
+            Rol rolUsuario = rolService.findRolByNombre("ROLE_USER");
 
-        if(rolUsuario == null){
-            throw new RuntimeException("No se encontró el ROLE_USER en la base de datos");
+            if(rolUsuario == null){
+                throw new RuntimeException("No se encontró el ROLE_USER en la base de datos");
+            }
+            usuario.getRoles().add(rolUsuario);
         }
-
-        usuario.getRoles().add(rolUsuario);
 
         //Lo guardamos en la base de datos
         return usuarioRepository.save(usuario);
