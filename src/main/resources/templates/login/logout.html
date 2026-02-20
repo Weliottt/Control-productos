@@ -9,16 +9,16 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1>Confirmar</h1>
+                    <h1 th:text="#{eliminar.confirmar}">Confirmar</h1>
                     <button class="btn-close" type="button" data-bs-toggle="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <h3>¿Seguro que desea cerrar sesión?</h3>
+                    <h3 th:text="#{logout.aviso}">¿Seguro que desea cerrar sesión?</h3>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal">Volver</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" th:text="#{boton.volver}">Volver</button>
                     <form th:action="@{/logout}" method="post">
-                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        <button type="submit" class="btn btn-danger" th:text="#{login.CerrarSesion}">Cerrar sesión</button>
                     </form>
                 </div>
             </div>

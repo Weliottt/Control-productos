@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
       data-bs-theme="dark">
 
-<head th:replace="~{/layout/plantilla :: head('Usuarios')}"></head>
+<head th:replace="~{/layout/plantilla :: head(#{header.usuarios})}"></head>
 
 <body class="bg-info-subtle d-flex flex-column min-vh-100">
 
@@ -15,10 +15,10 @@
             <table class="table table-striped table-dark align-middle text-center table-sm">
                 <tr>
                     <th>Id</th>
-                    <th>Nombre de usuario</th>
-                    <th>Fecha de alta</th>
-                    <th>Rol</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" colspan="2">Acciones</th>
+                    <th th:text="#{login.usuario}">Nombre de usuario</th>
+                    <th th:text="#{table.fechaAlta}">Fecha de alta</th>
+                    <th th:text="#{table.rol}">Rol</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')" colspan="2" th:text="#{table.acciones}">Acciones</th>
                 </tr>
                 <tr th:each="usuario : ${usuarios}">
                     <td th:text="${usuario.idUsuario}"></td>
@@ -33,7 +33,7 @@
 
                     <td class="" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="btn btn-outline-light" th:href="@{/admin/usuario/editar/{id} (id = ${usuario.idUsuario})}">
-                            <i class="fa-solid fa-pen-to-square"></i><span>Editar</span></a></td>
+                            <i class="fa-solid fa-pen-to-square"></i><span th:text="#{boton.editar}">Editar</span></a></td>
 
                     <td sec:authorize="hasRole('ROLE_ADMIN')" >
                         <a th:replace="~{usuario/eliminarUsuario :: botonEliminarUsuario}"></a>
