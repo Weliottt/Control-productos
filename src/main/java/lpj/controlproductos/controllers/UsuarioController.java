@@ -8,6 +8,8 @@ import lpj.controlproductos.model.Usuario;
 import lpj.controlproductos.services.interfaces.RolService;
 import lpj.controlproductos.services.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +45,16 @@ public class UsuarioController {
     public String eliminarUsuario(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes){
         Usuario usuarioEliminado = usuarioService.getUsuarioById(idUsuario);
 
+        //Verificamos que el usuario a eliminar no sea el ultimo admin disponible
         if (usuarioService.esUltimoAdmin(usuarioEliminado)){
             redirectAttributes.addFlashAttribute("noHayAdmin",true);
+            return "redirect:/admin/usuarios";
+        }
+
+        //Verificamos que el usuario a eliminar no sea el mismo que esta con la sesion activa
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(usuarioEliminado.getUsername().equals(auth.getName())){
+            redirectAttributes.addFlashAttribute("mismoUsuario",true);
             return "redirect:/admin/usuarios";
         }
 
@@ -66,7 +76,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/admin/usuario/guardar")
-    public String guardarUsuario(Usuario usuarioform){
+    public String guardarUsuario(Usuario usuarioform,RedirectAttributes redirectAttributes){
 
         Usuario usuarioDB = usuarioService.getUsuarioById(usuarioform.getIdUsuario());
 
@@ -83,12 +93,5 @@ public class UsuarioController {
         return "redirect:/admin/usuarios";
     }
 
-    private boolean verificarAdmin(List<Usuario> usuarios,Usuario usuario){
-
-
-
-        log.info("no se ha encontrado ningun administrador");
-        return false;
-    }
 
 }

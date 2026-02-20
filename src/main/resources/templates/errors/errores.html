@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head(title)}"></head>
+
+<div th:fragment="noHayAdmin" class="alert alert-danger d-flex justify-content-between" role="alert">
+  <h3 th:text="#{error.ultimoAdmin}">Error al realizar la accion. Debe haber al menos otro administrador disponible</h3>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+
+  <div th:fragment="mismoUsuario" class="alert alert-danger d-flex justify-content-between" role="alert">
+    <h3 th:text="#{error.ultimoAdmin}">Error al realizar la accion. No te puedes eliminar a ti mismo</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+</html>
