@@ -114,5 +114,21 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
         return usuarioRepository.findByUsername(username);
     }
 
+    @Override
+    public boolean esUltimoAdmin(Usuario usuario) {
+
+        boolean esAdmin;
+
+        long cantAdmins = usuarioRepository.findAll().stream()
+                .filter(u -> u.getRoles().stream()
+                        .anyMatch(r -> "ROLE_ADMIN".equals(r.getNombre())))
+                .count();
+
+        esAdmin = usuario.getRoles().stream()
+                .anyMatch(r -> "ROLE_ADMIN".equals(r.getNombre()));
+
+        return esAdmin && cantAdmins <= 1;
+    }
+
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -39,11 +40,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/admin/usuario/eliminar/{idUsuario}")
-    public String eliminarUsuario(@PathVariable Long idUsuario){
+    public String eliminarUsuario(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes){
         Usuario usuarioEliminado = usuarioService.getUsuarioById(idUsuario);
-        log.info("Se ha eliminado el usuario: "+usuarioEliminado.getUsername()+" con id "+usuarioEliminado.getIdUsuario());
+
+        if (usuarioService.esUltimoAdmin(usuarioEliminado)){
+            redirectAttributes.addFlashAttribute("noHayAdmin",true);
+            return "redirect:/admin/usuarios";
+        }
+
+        log.info("Se ha eliminado el usuario: " + usuarioEliminado.getUsername() + " con id " + usuarioEliminado.getIdUsuario());
         usuarioService.deleteUsuario(usuarioEliminado);
         return "redirect:/admin/usuarios";
+
     }
 
     @GetMapping("/admin/usuario/editar/{idUsuario}")
@@ -73,6 +81,14 @@ public class UsuarioController {
         log.info("Se ha actualizado el usuario con id: "+usuarioDB.getIdUsuario());
         usuarioService.saveUsuario(usuarioDB);
         return "redirect:/admin/usuarios";
+    }
+
+    private boolean verificarAdmin(List<Usuario> usuarios,Usuario usuario){
+
+
+
+        log.info("no se ha encontrado ningun administrador");
+        return false;
     }
 
 }

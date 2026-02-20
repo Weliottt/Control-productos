@@ -9,6 +9,10 @@
 
 <header th:replace="~{/layout/plantilla :: navbar}"></header>
 
+<div th:if="${noHayAdmin}">
+    <div th:replace="~{usuario/eliminarUsuario :: noHayAdmin}"></div>
+</div>
+
 <section class="container flex-grow-1 mt-4" th:fragment="listaProductos">
     <div class="row">
         <div class="col-md-6 w-100 mt-4 d-flex gap-3">
