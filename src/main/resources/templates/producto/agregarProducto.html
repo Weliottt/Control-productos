@@ -34,7 +34,7 @@
                             <div class="d-flex justify-content-between gap-2">
                                 <div class="mt-3 w-50">
                                     <label for="marca" th:text="#{label.marca}">Marca:</label>
-                                    <select required name="idMarca" id="marca" class="form-select">
+                                    <select required th:field="*{marcaProducto}" id="marca" class="form-select">
                                         <option value="" disabled selected th:text="#{select.marca}">Seleccione una marca</option>
                                         <option th:each="marca : ${marcas}"
                                                 th:value="${marca.idMarca}"
@@ -46,7 +46,7 @@
                                     <div class="mt-3 w-50">
 
                                         <label for="categoria" th:text="#{label.categoria}">Categoría:</label>
-                                        <select required class="form-select" name="idCategoria" id="categoria">
+                                        <select required class="form-select" th:field="*{categoriaProducto}" id="categoria">
                                             <option value="" disabled selected th:text="#{select.categoria}">Seleccione una categoría</option>
                                             <option th:each="categoria : ${categorias}"
                                                     th:value="${categoria.idCategoria}"
