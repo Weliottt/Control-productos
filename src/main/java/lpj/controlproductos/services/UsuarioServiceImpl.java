@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
         //Si el usuario ya tiene un id se actualiza
         if(usuario.getIdUsuario() != null){
-            return usuarioRepository.save(usuario);
+                return usuarioRepository.save(usuario);
         }
 
         //Codificamos la contraseña
@@ -117,16 +117,21 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
     @Override
     public boolean esUltimoAdmin(Usuario usuario) {
 
+        //Obtenemos el usuario de la base de datos
+        Usuario usuarioBD = usuarioRepository.findById(usuario.getIdUsuario()).orElseThrow( () -> new RuntimeException("Usuario no encontrado"));
         boolean esAdmin;
 
+        //Contamos la cantidad de administradores que hay en la BD
         long cantAdmins = usuarioRepository.findAll().stream()
                 .filter(u -> u.getRoles().stream()
                         .anyMatch(r -> "ROLE_ADMIN".equals(r.getNombre())))
                 .count();
 
-        esAdmin = usuario.getRoles().stream()
+        //Marcamos si el usuario pasado por parámetro es administrador
+        esAdmin = usuarioBD.getRoles().stream()
                 .anyMatch(r -> "ROLE_ADMIN".equals(r.getNombre()));
 
+        //Devolvemos el resultado para saber si es el último administrador de la base de datos
         return esAdmin && cantAdmins <= 1;
     }
 

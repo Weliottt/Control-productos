@@ -78,7 +78,16 @@ public class UsuarioController {
     @PostMapping("/admin/usuario/guardar")
     public String guardarUsuario(Usuario usuarioform,RedirectAttributes redirectAttributes){
 
+
         Usuario usuarioDB = usuarioService.getUsuarioById(usuarioform.getIdUsuario());
+
+        if(usuarioService.esUltimoAdmin(usuarioDB) &&
+                usuarioform.getRoles().stream().anyMatch(r -> "ROLE_USER".equals(r.getNombre()))){
+            
+            redirectAttributes.addFlashAttribute("noHayAdmin",true);
+            log.info("No se pudo editar el usuario");
+            return "redirect:/admin/usuarios";
+        }
 
         usuarioDB.setUsername(usuarioform.getUsername());
         usuarioDB.setRoles(usuarioform.getRoles());
