@@ -9,13 +9,15 @@
 
 <header th:replace="~{/layout/plantilla :: navbar}"></header>
 
-<div th:if="${noHayAdmin}">
-    <div th:replace="~{errors/errores :: noHayAdmin}"></div>
-</div>
+<th:block th:if="${noHayAdmin}">
+    <div th:replace="~{layout/alertas :: noHayAdmin}"></div>
+</th:block>
 
-<div th:if="${mismoUsuario}">
-    <div th:replace="~{errors/errores :: mismoUsuario}"></div>
-</div>
+
+<th:block th:if="${mismoUsuario}">
+    <div th:replace="~{layout/alertas :: mismoUsuario}"></div>
+</th:block>
+
 
 <section class="container flex-grow-1 mt-4" th:fragment="listaProductos">
     <div class="row">
@@ -44,10 +46,10 @@
                             <i class="fa-solid fa-pen-to-square"></i><span th:text="#{boton.editar}">Editar</span></a></td>
 
                     <td sec:authorize="hasRole('ROLE_ADMIN')" >
-                        <div th:if="${!#authentication.getName().equals(usuario.username)}">
+<!--                        <div th:if="${!#authentication.getName().equals(usuario.username)}">-->
                             <a th:replace="~{usuario/eliminarUsuario :: botonEliminarUsuario}"></a>
                             <a th:replace="~{usuario/eliminarUsuario :: modalEliminarUsuario}"></a>
-                        </div>
+<!--                        </div>-->
                     </td>
 
                 </tr>

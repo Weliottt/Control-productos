@@ -4,10 +4,13 @@
 <body class="d-flex flex-column min-vh-100 bg-info-subtle">
 <header th:replace="~{/layout/plantilla :: navbar}"></header>
 
-<div th:if="${success}" class="alert alert-success d-flex justify-content-between" role="alert">
-    <h3 th:text="#{login.exito}" ></h3>
-    <button class="btn-close" data-bs-dismiss="alert" type="button"></button>
-</div>
+<th:block th:if="${success}">
+    <div th:replace="~{layout/alertas :: exitoRegistro}"></div>
+</th:block>
+
+<th:block th:if="${usuarioEditado}">
+    <div th:replace="~{layout/alertas :: usuarioEditado}"></div>
+</th:block>
 
 <main class="container flex-grow-1 d-flex justify-content-center align-items-center">
     <div class="col-12 col-sm-10 col-md-6 col-lg-5 ">
