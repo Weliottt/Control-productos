@@ -77,8 +77,6 @@ public class ProductoController {
 
     @PostMapping("/admin/producto/guardar")
     public String guardar(@RequestParam Long idNegocio,
-                          @RequestParam Long idMarca,
-                          @RequestParam Long idCategoria,
                           Producto producto) {
 
         if (producto.getIdProducto() == null) {
@@ -88,8 +86,8 @@ public class ProductoController {
         }
 
         Negocio negocio = negocioService.getNegocioById(idNegocio);
-        Categoria categoria = categoriaService.getCategoriaById(idCategoria);
-        Marca marca = marcaService.getMarcaById(idMarca);
+        Categoria categoria = categoriaService.getCategoriaById(producto.getCategoriaProducto().getIdCategoria());
+        Marca marca = marcaService.getMarcaById(producto.getMarcaProducto().getIdMarca());
 
         producto.setNegocio(negocio);
         producto.setCategoriaProducto(categoria);
