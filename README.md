@@ -1,6 +1,6 @@
 # Control de Productos
 
-Aplicación web desarrollada con Spring Boot que permite gestionar negocios con sus respecitvos productos y usuarios con manejo de roles.
+Aplicación web desarrollada con Spring Boot y Thymeleaf que permite gestionar negocios con sus respecitvos productos y usuarios con manejo de roles.
 
 ## Tecnologías
 - Java
