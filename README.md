@@ -66,4 +66,4 @@ Aplicación web desarrollada con Spring Boot que permite gestionar negocios con 
 2. Configurar base de datos en application.properties
 
 3. Ejecutar:
-   mvn spring-boot:run
+   Ejecutar la aplicacion Spring en su IDE de preferencia
